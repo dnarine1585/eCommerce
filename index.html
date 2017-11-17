@@ -1,0 +1,112 @@
+<!doctype HtML>
+<html>
+    <head>
+        <title>Gamestop 2.0</title>
+        <style>
+             img{
+                width:400px;
+                height:400px;
+             }
+
+             h1{
+                 color: dodgerblue;
+             }
+
+        </style>
+        <script>
+            var tax = 0.0875;
+            var ship = 0;
+            var dis = 0;
+            var p1 = 49.99, wpr1 = 46.99;
+            var p2 = 59.99, wpr2 = 56.99;
+            var p3 = 39.99, wpr3 = 36.99;
+
+            function process(){
+                //calculations
+                var q1 = parseFloat(document.getElementById("q1").value);
+                var q2 = parseFloat(document.getElementById("q2").value);
+                var q3 = parseFloat(document.getElementById("q3").value);
+                var itemssold = q1 + q2 + q3;
+                var cusubt = (q1*p1)+(q2*p2)+(q3*p3);
+                var tax2 = cusubt*tax;
+                var cusubt2 = cusubt + tax2;
+                var cosubt = (wpr1*q1)+(wpr2*q2)+(wpr3*q3); 
+                var profit = cusubt - cosubt;
+                //shipping cost
+                if (cusubt <100){
+                    ship = 25;
+                }else if (cusubt >=100 && cusubt<=200){
+                    ship = 10;
+                }else{
+                    ship = 0;
+                }
+                var total = cusubt
+                //building the string for customer
+                var build1 = "<pre>";
+                build1 += "CUSTOMER ORDER DETAILS";
+                build1 += "<br>SUBTOTAL:              $" + cusubt;
+                build1 += "<br>TAX:                   " + tax*100 + "%";
+                build1 += "<br>SHIPPING AND HANDLING: $" + ship;
+                build1 += "<br>TOTAL:                 $" + cusubt2 + ship;
+                
+                var op1 = document.getElementById("customer");
+                op1.innerHTML=build1;
+                //building string for company
+                var build2 = "<pre>";
+                build2 += "ORDER DETAILS FOR COMPANY";
+                build2 += "<br>TOTAL ITEMS SOLD:  " + itemssold;
+                build2 += "<br>CUSTOMER SUBTOTAL: $" + cusubt;
+                build2 += "<br>COMPANY SUBTOTAL:  $" + cosubt;
+                build2 += "<br>PROFIT/LOSS:       $" + profit;
+                
+                var op2 = document.getElementById("company");
+                op2.innerHTML=build2
+            }
+        </script>
+    </head>
+    <body>
+        <h1>
+            <p>Gamestop 2.0</p>
+        </h1>
+        <h2>
+            Injustice 2
+        </h2>
+        <br>
+        <div>
+            <img src="p1.jpg">
+            <br>
+            <p>The sequal to Injustice Gods Among Us brings a new fighting experience with the new gear and level systems. You can now level up and customize your characters with new gear and shaders that changes their apperance and makes them stronger than ever.</p>             
+            <br>
+            <p>Avaliable Platforms: Xbox One, PS4, PC</p><br>
+            <p>Price: $49.99</p><br><p>Quantity: </p>
+            <input type="text" id="q1" placeholder="Enter Quantity">
+            <hr>
+            <h2>
+                Assassin's Creed Origins
+            </h2>
+            <img src="p2.jpg">
+            <p>Assassin's Creed Origins takes you back to Ancient Egypt to where the Assassin Brotherhood was founded. As Bayek you will create the brotherhood that will fight for freedom.</p>
+            <br>
+            <p>Avaliable Platforms: Xbox One, PS4, PC</p><br>
+            <p>Price: $59.99</p><br><p>Quantity: </p>
+            <input type="text" id="q2" placeholder="Enter Quantity">
+            <hr>
+            <h2>
+                The Elder Scrolls V Skyrim Special Edition
+            </h2>
+            <img src="p3.jpg"><br>
+            <p>The fifth installment in the Elder Scrolls Series that came out in 2011 comes back remastered with enhanced visuals that make the game look incredible. Skyrim Special Edition brings back the original Skyrim experience, but looks better than ever. For Xbox One and PS4 users, mods are now coming to console which will greatly enhance your gameplay.</p>
+            <br>
+            <p>Avaliable Platforms: Xbox One, PS4, PC</p><br>
+            <p>Price: $39.99</p><br><p>Quantity: </p>
+            <input type="text" id="q3" placeholder="Enter Quantity" >
+            <hr>
+            <button onclick="process()" style="background-color:#38FF1E;">Process Order</button>
+        </div>
+        <div id="customer"></div>
+        <div id="company"></div>
+
+
+    </body>
+</html>
+	
